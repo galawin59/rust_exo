@@ -17,7 +17,10 @@ fn main() {
         .read_line(&mut supposition)
         .expect("erreur");
 
-    let supposition: u32 = supposition.trim().parse().expect("Entrez un nombre");
+    let supposition: u32 = match supposition.trim().parse() {
+        Ok(nombre) => nombre,
+        Err(_) => continue,
+    };
     println!("votre nombre : {}",supposition);
 
     match supposition.cmp(&nombre_secret){
